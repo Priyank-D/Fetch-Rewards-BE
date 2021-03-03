@@ -1,10 +1,24 @@
 # Fetch-Rewards-BE
 Web-Services for user's points
 
-Instllation on Windows 
+#To run the application you need to have:
+1. python 3
+2. pip
+
+#Clone repository in your system
+cd Fetch-Rewards-BE
+
+#Instllation on Windows 
+    1. py -m pip install --user virtualenv
     1. py -3 -m venv venv
     2. venv\Scripts\activate
     3. pip install Flask
-    4. python -m pip freeze > requirements.txt
+    4. pip3 install -r requirements.txt
+    5. flask run -- To run the application
 
-Instllation on Windows
+#Instllation on Mac & Linux
+    1. python3 -m pip install --user virtualenv
+    2. python3 -m venv env
+    3. source env/bin/activate
+    4. pip3 install -r requirements.txt
+    5. flask run -- To run the application
