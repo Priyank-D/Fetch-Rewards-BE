@@ -23,6 +23,10 @@ cd Fetch-Rewards-BE
 4. pip3 install -r requirements.txt
 5. flask run -- To run the application
 
+**To run the test file**
+1. start server using (flask run) on one terminal
+2. In second terminal come to root directory and run (pytest)
+
 **Assumptions**
 1. Transactions records are in Json
 2. In transactions reocrds points can be negative 
