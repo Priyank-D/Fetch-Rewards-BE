@@ -1,3 +1,12 @@
+"""
+app.py file is entry point of the application which handle 3 requests.
+1. Insert Transaction
+2. Delete Points
+3. Show transactions
+Created by: Priyank Dharani 03/01/2021
+Modefied by:
+"""
+
 from flask import Flask
 from flask import request
 import  json
@@ -9,6 +18,8 @@ app=Flask(__name__)
 accounts = {}
 transactions_insert = []
 total_points = 0
+
+#1. Insert Transaction
 @app.route('/transactions', methods=['POST'])
 def transactions():
     global total_points
@@ -39,7 +50,8 @@ def transactions():
     transactions_insert.sort(key= lambda x:x["timestamp"])
     
     return response
-
+	
+#2. Delete Points
 @app.route('/delete_points', methods=['POST'])
 def delete_points():
     global total_points
@@ -74,7 +86,23 @@ def delete_points():
                 remaining_balance[trans_payer] = transactions_insert[transid]["points"]
         
     total_points = sum([x["points"] for x in transactions_insert])
-    return json.dumps(remaining_balance)
+    final_result = [
+        {"payer":payer,"points":points} for payer,points in remaining_balance.items()
+    ]
+    return json.dumps(final_result)
+
+#3. Show transactions
+@app.route('/balance', methods=['GET'])
+def balance():
+	balance = {}
+
+	for transaction in transactions_insert:
+		payer = transaction["payer"]
+		if payer not in balance:
+			balance[payer] = transaction["points"]
+		else:
+			balance[payer] += transaction["points"]
+	return balance
 
 if __name__ == '__name__':
     app.run(debug=True)
