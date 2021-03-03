@@ -6,5 +6,6 @@ Modefied by:
 
 def check_required_args(request,*args):
     for key in args:
-        if not request.get(key):
+        print(key)
+        if key not in request:
             raise KeyError('Arguments %s are required' % (', '.join(args)))
